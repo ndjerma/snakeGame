@@ -25,10 +25,8 @@ This project implements a complete ECS game engine following functional programm
 - Use of spread operators and immutable data structures
 
 ✓ **Higher-Order Functions**
-- `createSystem()` - returns system functions
-- `compose()` and `pipe()` for function composition
-- `curry()` for partial application
-- System factories that return configured systems
+- `pipe()` for function composition
+- System factories like `createInputSystem()` and `createRenderSystem()`
 
 ✓ **Map/Filter/Reduce**
 - `map`: Transform entity positions, render all entities
@@ -123,12 +121,16 @@ const newWorld = updateComponent(
 
 ### Higher-Order Functions
 ```javascript
-// System factory that creates processing functions
-export const createSystem = (requiredComponents, processFn) => (world) => {
-  const entities = queryEntities(world, ...requiredComponents);
-  return entities.reduce((currentWorld, entityId) => {
-    return processFn(currentWorld, entityId);
-  }, world);
+// System factory - returns a configured function
+export const createInputSystem = () => {
+  let keyQueue = [];
+
+  const processInputs = (world) => {
+    // Process inputs and return new world
+    return newWorld;
+  };
+
+  return processInputs;  // Returns function
 };
 ```
 

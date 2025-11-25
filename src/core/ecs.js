@@ -155,14 +155,3 @@ export const updateComponent = (world, entityId, componentType, updater) => {
 export const getAllComponents = (world, componentType) => {
   return world.components.get(componentType) || new Map();
 };
-
-/**
- * Higher-order function: Create a system that processes entities with specific components
- * This demonstrates function composition and higher-order functions
- */
-export const createSystem = (requiredComponents, processFn) => (world) => {
-  const entities = queryEntities(world, ...requiredComponents);
-  return entities.reduce((currentWorld, entityId) => {
-    return processFn(currentWorld, entityId);
-  }, world);
-};
