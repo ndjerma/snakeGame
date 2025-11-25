@@ -87,7 +87,7 @@ const main = () => {
 
   // Set canvas size
   canvas.width = CONFIG.GRID_WIDTH * CONFIG.CELL_SIZE;
-  canvas.height = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 40; // Extra space for UI
+  canvas.height = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 50; // Extra space for UI
 
   // Create systems
   const inputSystem = createInputSystem();

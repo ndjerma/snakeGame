@@ -97,10 +97,10 @@ const drawUI = (ctx, world) => {
   ctx.fillStyle = CONFIG.COLORS.TEXT;
   ctx.font = 'bold 20px Arial, sans-serif';
 
-  const uiY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 25;
+  const uiY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 32;
 
-  ctx.fillText(`Score: ${world.score}`, 10, uiY);
-  ctx.fillText(`Length: ${world.snakeBody.length}`, 200, uiY);
+  ctx.fillText(`Score: ${world.score}`, 15, uiY);
+  ctx.fillText(`Length: ${world.snakeBody.length}`, 220, uiY);
 
   if (world.gameStatus === 'paused') {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
