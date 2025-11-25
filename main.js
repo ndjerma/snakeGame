@@ -6,7 +6,6 @@ import { createGameLoop } from './src/core/game.js';
 import {
   ComponentType,
   createPosition,
-  createDirection,
   createSnakeHead,
   createSnakeSegment,
   createRenderable

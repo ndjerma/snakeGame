@@ -60,30 +60,6 @@ export const addComponent = (world, entityId, componentType, componentData) => {
 };
 
 /**
- * Remove component from entity
- * Pure function - returns new world
- */
-export const removeComponent = (world, entityId, componentType) => {
-  const entityComponents = new Set(world.entities.get(entityId) || new Set());
-  entityComponents.delete(componentType);
-
-  const newEntities = new Map(world.entities);
-  newEntities.set(entityId, entityComponents);
-
-  const componentMap = new Map(world.components.get(componentType) || new Map());
-  componentMap.delete(entityId);
-
-  const newComponents = new Map(world.components);
-  newComponents.set(componentType, componentMap);
-
-  return {
-    ...world,
-    entities: newEntities,
-    components: newComponents
-  };
-};
-
-/**
  * Remove entity completely
  * Pure function - returns new world
  */
