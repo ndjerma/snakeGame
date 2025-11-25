@@ -101,29 +101,29 @@ npx http-server -p 8000
 - Game ends if snake hits walls or itself
 - Try to get the highest score!
 
-## Code Highlights for Defense
+## Code Examples
 
-### Function Composition Example
+### Function Composition
 ```javascript
-// In src/core/game.js
+// Systems are composed in a pipeline
 const updatePipeline = pipe(...updateSystems);
-// Composes: input → movement → collision → growth
+// Flow: input → movement → collision → growth
 ```
 
-### Immutability Example
+### Immutability
 ```javascript
-// In src/systems/movementSystem.js
+// All updates return new state objects
 const newWorld = updateComponent(
   worldWithDirection,
   headId,
   ComponentType.POSITION,
-  newHeadPosition  // Returns NEW world, doesn't mutate
+  newHeadPosition
 );
 ```
 
-### Higher-Order Function Example
+### Higher-Order Functions
 ```javascript
-// In src/core/ecs.js
+// System factory that creates processing functions
 export const createSystem = (requiredComponents, processFn) => (world) => {
   const entities = queryEntities(world, ...requiredComponents);
   return entities.reduce((currentWorld, entityId) => {
@@ -132,35 +132,33 @@ export const createSystem = (requiredComponents, processFn) => (world) => {
 };
 ```
 
-### Map/Filter/Reduce Examples
+### Functional Array Methods
 ```javascript
-// Map - Transform positions
+// Map - Transform entity IDs to positions
 const oldPositions = world.snakeBody.map(entityId =>
   getComponent(world, entityId, ComponentType.POSITION)
 );
 
-// Filter - Find entities at position
+// Filter - Find specific entities
 const collidedFood = Array.from(foodComponents.keys()).filter(entityId => {
   const foodPos = getComponent(world, entityId, ComponentType.POSITION);
   return foodPos && positionsEqual(headPosition, foodPos);
 });
 
-// Reduce - Thread state through updates
+// Reduce - Thread state through multiple updates
 newWorld = world.snakeBody.slice(1).reduce((currentWorld, entityId, index) => {
   return updateComponent(currentWorld, entityId, ComponentType.POSITION, previousPosition);
 }, newWorld);
 ```
 
-## Possible Extensions (for Defense)
+## Configuration
 
-Easy modifications that can be made during defense:
+All game settings are centralized in `src/utils/config.js`:
 
-1. **Change speed**: Modify `CONFIG.INITIAL_SPEED` in `src/utils/config.js`
-2. **Add obstacles**: Create new entities with Position and Renderable components
-3. **Change colors**: Update `CONFIG.COLORS` object
-4. **Different food types**: Add new food component with different values
-5. **Score multiplier**: Multiply food value based on snake length
-6. **Boundary wrapping**: Modify collision detection to wrap around edges
+- **Speed**: `INITIAL_SPEED` controls game update rate
+- **Grid size**: `GRID_WIDTH` and `GRID_HEIGHT`
+- **Colors**: `COLORS` object for all visual elements
+- **Scoring**: `FOOD_VALUE` points per food item
 
 ## Technical Notes
 
@@ -170,10 +168,6 @@ Easy modifications that can be made during defense:
 - 60 FPS rendering, configurable update rate
 - Modular system design for easy extension
 
-## Author
+## About
 
-Created for Functional Programming course project.
-
-## License
-
-Educational project - free to use and modify.
+A Functional Programming course project demonstrating ECS architecture and functional programming principles in JavaScript.
