@@ -95,12 +95,12 @@ const drawEntities = (ctx, world) => {
  */
 const drawUI = (ctx, world) => {
   ctx.fillStyle = CONFIG.COLORS.TEXT;
-  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.font = 'bold 24px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
 
-  const uiY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 32;
+  const uiY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 35;
 
   ctx.fillText(`Score: ${world.score}`, 15, uiY);
-  ctx.fillText(`Length: ${world.snakeBody.length}`, 220, uiY);
+  ctx.fillText(`Length: ${world.snakeBody.length}`, 250, uiY);
 
   if (world.gameStatus === 'paused') {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
