@@ -2,6 +2,8 @@
 
 A classic Snake game built with a functional Entity-Component-System (ECS) architecture in pure JavaScript.
 
+## [Play the Game Live](https://ndjerma.github.io/snakeGame/)
+
 ## Project Overview
 
 This project implements a complete ECS game engine following functional programming paradigms, with a playable Snake game as the demonstration.
