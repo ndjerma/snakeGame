@@ -94,10 +94,16 @@ const drawEntities = (ctx, world) => {
  * Draw score and UI
  */
 const drawUI = (ctx, world) => {
-  ctx.fillStyle = CONFIG.COLORS.TEXT;
+  // Draw UI background bar
+  const uiStartY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE;
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, uiStartY, CONFIG.GRID_WIDTH * CONFIG.CELL_SIZE, 50);
+
+  // Draw text
+  ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 24px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
 
-  const uiY = CONFIG.GRID_HEIGHT * CONFIG.CELL_SIZE + 35;
+  const uiY = uiStartY + 35;
 
   ctx.fillText(`Score: ${world.score}`, 15, uiY);
   ctx.fillText(`Length: ${world.snakeBody.length}`, 250, uiY);
