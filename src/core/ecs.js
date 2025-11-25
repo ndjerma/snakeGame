@@ -68,18 +68,21 @@ export const removeEntity = (world, entityId) => {
   if (!entity) return world;
 
   // Remove entity from all component maps
-  let newWorld = world;
+  const newComponents = new Map(world.components);
   entity.forEach(componentType => {
-    newWorld = removeComponent(newWorld, entityId, componentType);
+    const componentMap = new Map(newComponents.get(componentType) || new Map());
+    componentMap.delete(entityId);
+    newComponents.set(componentType, componentMap);
   });
 
   // Remove entity itself
-  const newEntities = new Map(newWorld.entities);
+  const newEntities = new Map(world.entities);
   newEntities.delete(entityId);
 
   return {
-    ...newWorld,
-    entities: newEntities
+    ...world,
+    entities: newEntities,
+    components: newComponents
   };
 };
 
